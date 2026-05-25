@@ -22,6 +22,7 @@
                 <a href="/admin/dashboard" class="block hover:bg-gray-700 p-2 rounded">Dashboard</a>
                 <a href="/admin/products" class="block hover:bg-gray-700 p-2 rounded">Products</a>
                 <a href="/admin/categories" class="block hover:bg-gray-700 p-2 rounded">Categories</a>
+                <a href="/admin/orders" class="block hover:bg-gray-700 p-2 rounded">Orders</a>
                 <a href="/" class="block hover:bg-gray-700 p-2 rounded">Back to Store</a>
 
             </nav>

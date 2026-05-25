@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\CheckoutController;
+use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -34,6 +35,10 @@ Route::prefix('admin')
         
     // Category CRUD
     Route::resource('/categories', CategoryController::class)->names('admin.categories');
+
+    Route::get('/orders', [OrderController::class,'index'])->name('admin.orders.index');
+    Route::get('/orders/{id}', [OrderController::class,'show'])->name('admin.orders.show');
+    Route::post('/orders/{id}/status', [OrderController::class,'updateStatus'])->name('admin.orders.status');
 
 });
 
