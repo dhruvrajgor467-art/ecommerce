@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Front\CartController;
+use App\Http\Controllers\Front\CheckoutController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -50,6 +51,18 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/cart/remove/{id}',[CartController::class,'remove'])
         ->name('cart.remove');
 
+    Route::get('/checkout', [CheckoutController::class, 'index'])
+        ->name('checkout');
+
+    Route::post('/checkout', [CheckoutController::class, 'store'])
+        ->name('checkout.store');
+
 });
+
+Route::get('/order/success/{id}', function ($id) {
+
+    return view('frontend.checkout.success', compact('id'));
+
+})->name('order.success');
 
 require __DIR__.'/auth.php';

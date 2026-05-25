@@ -83,11 +83,20 @@
                 Total: ₹{{ $total }}
             </h2>
 
-            <button class="mt-4 bg-indigo-600 text-white px-6 py-3 rounded">
+            @if(count($cart) > 0)
 
-                Proceed To Checkout
+            <div class="flex justify-end mt-6">
 
-            </button>
+                <a href="{{ route('checkout') }}"
+                    class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700">
+
+                    Proceed To Checkout
+
+                </a>
+
+            </div>
+
+            @endif
 
         </div>
 
