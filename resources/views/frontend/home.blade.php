@@ -78,9 +78,15 @@
                 <div class="flex justify-between items-center mt-4">
                     <span class="font-bold text-indigo-600">₹{{ $product->price }}</span>
 
-                    <button class="bg-indigo-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-indigo-700">
-                        Add
-                    </button>
+                    <form action="{{ route('cart.add',$product->id) }}" method="POST">
+
+                        @csrf
+
+                        <button class="bg-indigo-600 px-3 py-1 text-white rounded">
+                            Add To Cart
+                        </button>
+
+                    </form>
                 </div>
             </div>
 
