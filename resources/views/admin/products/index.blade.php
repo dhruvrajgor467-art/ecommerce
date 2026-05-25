@@ -34,7 +34,7 @@
                 <td class="p-3">{{ $product->id }}</td>
 
                 <td class="p-3">
-                    <img src="{{ $product->image ?? 'https://via.placeholder.com/50' }}"
+                    <img src="{{ asset($product->image ?? 'https://via.placeholder.com/50') }}"
                         class="w-12 h-12 rounded object-cover">
                 </td>
 

@@ -14,9 +14,9 @@ class HomeController extends Controller
             'featured',1
         )
         ->latest()
-        ->take(8)
-        ->get();
-
+        ->take(12)
+        ->get();  
+        
         return view(
             'frontend.home',
             compact('products')

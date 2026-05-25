@@ -68,7 +68,8 @@
         @foreach($products as $product) <div
             class="bg-white rounded-xl shadow-sm hover:shadow-lg transition overflow-hidden">
 
-            <img src="{{ $product->image ?? 'https://via.placeholder.com/300' }}" class="w-full h-48 object-cover">
+            <img src="{{ asset($product->image ?? 'https://via.placeholder.com/50') }}"
+                class="w-full h-48 object-cover">
 
             <div class="p-4">
                 <h3 class="font-semibold">{{ $product->name }}</h3>

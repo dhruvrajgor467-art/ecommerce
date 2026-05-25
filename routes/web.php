@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -27,8 +28,10 @@ Route::prefix('admin')
         ->name('admin.dashboard');
 
     // PRODUCT CRUD
-    Route::resource('/products', ProductController::class)
-        ->names('admin.products');
+    Route::resource('/products', ProductController::class)->names('admin.products');
+        
+    // Category CRUD
+    Route::resource('/categories', CategoryController::class)->names('admin.categories');
 
 });
 

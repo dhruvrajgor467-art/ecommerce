@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -23,7 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -34,10 +36,12 @@ class ProductController extends Controller
         $request->validate([
             'name'=>'required',
             'price'=>'required',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $product = new Product();
 
+        $product->category_id = $request->category_id;
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
         $product->description = $request->description;
@@ -53,7 +57,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index');
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -70,7 +74,8 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -80,6 +85,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
+        $product->category_id = $request->category_id;
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
         $product->description = $request->description;
@@ -95,7 +101,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index');
+        return redirect()->route('admin.products.index');
     }
 
     /**
