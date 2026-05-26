@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Front\StripeController;
+use App\Http\Controllers\Front\PaymentController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -69,5 +72,16 @@ Route::get('/order/success/{id}', function ($id) {
     return view('frontend.checkout.success', compact('id'));
 
 })->name('order.success');
+
+
+
+Route::get('/stripe/pay/{order}',[StripeController::class,'pay'])->name('stripe.pay');
+Route::get('/stripe/success/{order}',[StripeController::class,'success'])->name('stripe.success');
+Route::get('/stripe/cancel/{order}',[StripeController::class,'cancel'])->name('stripe.cancel');
+
+Route::get('/payment/{order}',[PaymentController::class,'pay'])->name('payment.pay');
+
+Route::get('/paypal/success/{order}', [PaymentController::class,'paypalSuccess'])->name('paypal.success');
+Route::get('/paypal/cancel/{order}',[PaymentController::class,'paypalCancel'])->name('paypal.cancel');
 
 require __DIR__.'/auth.php';

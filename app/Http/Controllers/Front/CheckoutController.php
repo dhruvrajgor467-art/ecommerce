@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -29,6 +30,7 @@ class CheckoutController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
+            'payment_method'=>'required'
         ]);
 
         $cart = session('cart', []);
@@ -37,37 +39,96 @@ class CheckoutController extends Controller
             return redirect()->route('home')
                 ->with('error', 'Cart is empty');
         }
+        DB::beginTransaction();
 
-        $total = 0;
+        try {
 
-        foreach ($cart as $item) {
-            $total += $item['price'] * $item['quantity'];
-        }
+            $total = 0;
 
-        // Create Order
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'customer_name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'total' => $total,
-            'status' => 'pending'
-        ]);
+            foreach ($cart as $item) {
+                $total += $item['price'] * $item['quantity'];
+            }
 
-        // Create Order Items
-        foreach ($cart as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price']
+            // Create Order
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'customer_name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'total' => $total,
+                'status' => 'pending',
+                'payment_method' => $request->payment_method,
+                'payment_status' => 'pending',
             ]);
+
+            // Create Order Items
+            foreach ($cart as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item['id'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price']
+                ]);
+            }
+
+            /*
+            COD flow
+            */
+
+            if($request->payment_method=='cod')
+            {
+                session()->forget('cart');
+
+                DB::commit();
+
+                return redirect()->route(
+                    'order.success',
+                    $order->id
+                );
+            }
+
+            if($request->payment_method=='stripe')
+            {
+                DB::commit();
+                return redirect()->route('payment.pay', $order->id);
+            }
+
+            if($request->payment_method=='paypal')
+            {
+                DB::commit();
+
+                $response = app(
+                    \App\Services\Payment\PaymentService::class
+                )->pay($order);
+
+                return redirect(
+                    $response['links'][1]['href']
+                );
+            }
+
+            /*
+            Future:
+            Stripe
+            Razorpay
+            Paypal
+            */
+
+            DB::commit();
+
+            return back();
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+
+            return back()
+            ->with(
+                'error',
+                $e->getMessage()
+            );
         }
 
-        // Clear cart
-        session()->forget('cart');
-
-        return redirect()->route('order.success', $order->id);
     }
+    
 }

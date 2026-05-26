@@ -9,20 +9,36 @@
     <div class="bg-white p-10 rounded shadow">
 
         <h1 class="text-3xl font-bold text-green-600">
-            🎉 Order Placed Successfully
+            Order Confirmed
         </h1>
 
-        <p class="mt-4 text-gray-600">
-            Your order ID is
-            <span class="font-bold">#{{ $id }}</span>
+        <p class="mt-4">
+
+            Order ID:
+
+            <strong>
+                #{{ $id }}
+            </strong>
+
         </p>
 
-        <p class="mt-2 text-gray-500">
-            We will process your order soon.
+        <p class="mt-4 text-gray-500">
+
+            Payment Method:
+            Cash On Delivery
+
+        </p>
+
+        <p class="text-gray-500 mt-2">
+
+            Your order has been placed successfully.
+
         </p>
 
         <a href="{{ route('home') }}" class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded">
+
             Continue Shopping
+
         </a>
 
     </div>

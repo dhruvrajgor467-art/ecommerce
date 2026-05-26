@@ -24,7 +24,49 @@
             <input type="text" name="phone" placeholder="Phone" class="w-full border p-3 rounded" required>
 
             <textarea name="address" placeholder="Full Address" class="w-full border p-3 rounded" required></textarea>
+            <div>
 
+                <h2 class="font-semibold mb-3">
+                    Payment Method
+                </h2>
+
+                <div class="space-y-3">
+
+                    <label class="flex items-center gap-2">
+
+                        <input type="radio" name="payment_method" value="cod" checked>
+
+                        Cash On Delivery
+
+                    </label>
+
+                    <label class="flex items-center gap-2">
+
+                        <input type="radio" name="payment_method" value="stripe">
+
+                        Stripe
+
+                    </label>
+
+                    <label class="flex items-center gap-2">
+
+                        <input type="radio" name="payment_method" value="razorpay">
+
+                        Razorpay
+
+                    </label>
+
+                    <label class="flex items-center gap-2">
+
+                        <input type="radio" name="payment_method" value="paypal">
+
+                        PayPal
+
+                    </label>
+
+                </div>
+
+            </div>
             <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded hover:bg-indigo-700">
 
                 Place Order

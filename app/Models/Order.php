@@ -12,6 +12,15 @@ class Order extends Model
     const STATUS_COMPLETED = 'completed';
     const STATUS_CANCELLED = 'cancelled';
 
+    const PAYMENT_COD='cod';
+    const PAYMENT_STRIPE='stripe';
+    const PAYMENT_RAZORPAY='razorpay';
+    const PAYMENT_PAYPAL='paypal';
+
+    const PAYMENT_PENDING='pending';
+    const PAYMENT_PAID='paid';
+    const PAYMENT_FAILED='failed';
+
     protected $fillable = [
 
         'user_id',
@@ -20,7 +29,11 @@ class Order extends Model
         'phone',
         'address',
         'total',
-        'status'
+        'status',
+
+        'payment_method',
+        'payment_status',
+        'transaction_id'
 
     ];
 
