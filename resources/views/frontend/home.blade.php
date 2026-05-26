@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
-@section('title','Home')
+@section('title')
+Online Shopping for Electronics, Grocery & More | Cartivo
+@endsection
 
 @section('content')
 
@@ -45,11 +47,30 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-        @foreach(['Fashion','Electronics','Home','Beauty'] as $cat)
-        <div class="bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md transition">
-            <div class="text-lg font-semibold">{{ $cat }}</div>
-            <p class="text-sm text-gray-500 mt-1">Explore {{ $cat }}</p>
-        </div>
+        <!-- ALL category reset -->
+        <a href="{{ route('home') }}"
+            class="bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md transition block">
+
+            <div class="text-lg font-semibold">All</div>
+            <p class="text-sm text-gray-500 mt-1">View all products</p>
+
+        </a>
+
+        @foreach($categories as $cat)
+
+        <a href="{{ route('home', ['category' => $cat->id]) }}"
+            class="bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md transition block">
+
+            <div class="text-lg font-semibold">
+                {{ $cat->name }}
+            </div>
+
+            <p class="text-sm text-gray-500 mt-1">
+                Explore {{ $cat->name }}
+            </p>
+
+        </a>
+
         @endforeach
 
     </div>

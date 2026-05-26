@@ -48,7 +48,7 @@
 
                     </label>
 
-                    <label class="flex items-center gap-2">
+                    <!-- <label class="flex items-center gap-2">
 
                         <input type="radio" name="payment_method" value="razorpay">
 
@@ -62,7 +62,7 @@
 
                         PayPal
 
-                    </label>
+                    </label> -->
 
                 </div>
 

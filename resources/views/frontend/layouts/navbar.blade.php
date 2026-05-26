@@ -2,17 +2,17 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         <!-- Logo -->
-        <div class="text-2xl font-bold text-indigo-600">
-            ShopifyX
+        <div class="text-4xl font-bold text-indigo-600">
+            Cartivo
         </div>
 
         <!-- Nav Links -->
-        <nav class="hidden md:flex space-x-8 text-sm font-medium">
+        <!-- <nav class="hidden md:flex space-x-8 text-sm font-medium">
             <a href="/" class="hover:text-indigo-600">Home</a>
             <a href="/products" class="hover:text-indigo-600">Shop</a>
             <a href="#" class="hover:text-indigo-600">Categories</a>
             <a href="#" class="hover:text-indigo-600">Deals</a>
-        </nav>
+        </nav> -->
 
         <!-- Right Side -->
         <div class="flex items-center space-x-4">

@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-4 gap-8">
 
         <div>
-            <h3 class="font-bold text-lg text-indigo-600">ShopifyX</h3>
+            <h3 class="font-bold text-lg text-indigo-600">Cartivo</h3>
             <p class="text-sm text-gray-500 mt-2">
                 Modern eCommerce solution built for speed and style.
             </p>
@@ -38,6 +38,6 @@
     </div>
 
     <div class="text-center text-sm text-gray-500 py-4 border-t">
-        © 2026 ShopifyX. All rights reserved.
+        © 2026 Cartivo. All rights reserved.
     </div>
 </footer>

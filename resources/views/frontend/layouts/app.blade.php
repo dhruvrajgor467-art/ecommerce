@@ -13,7 +13,10 @@
 
     @vite(['resources/css/app.css'])
 
-    <title>@yield('title')</title>
+    <title>@yield('title', 'Cartivo')</title>
+
+    <meta name="description" content="@yield('meta_description',
+      'Shop electronics, grocery, fashion and more at Cartivo.')">
 
 </head>
 
