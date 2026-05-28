@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
+use App\Events\OrderPlaced;
 
 class CheckoutController extends Controller
 {
@@ -82,6 +83,8 @@ class CheckoutController extends Controller
 
                 DB::commit();
 
+                event(new OrderPlaced($order));
+
                 return redirect()->route(
                     'order.success',
                     $order->id
@@ -91,6 +94,7 @@ class CheckoutController extends Controller
             if($request->payment_method=='stripe')
             {
                 DB::commit();
+                event(new OrderPlaced($order));
                 return redirect()->route('payment.pay', $order->id);
             }
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
 
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Icons --}}
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -120,7 +120,12 @@
 
                             <i data-lucide="bell"></i>
 
-                            <span class="absolute -top-1 -right-1 bg-red-500 h-2 w-2 rounded-full"></span>
+                            <span id="notificationCount"
+                                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded">
+
+                                0
+
+                            </span>
 
                         </button>
 
@@ -164,7 +169,8 @@
     <script>
     lucide.createIcons();
     </script>
-
+    <div id="toast-container" class="fixed top-5 right-5 space-y-3 z-50">
+    </div>
 </body>
 
 </html>
